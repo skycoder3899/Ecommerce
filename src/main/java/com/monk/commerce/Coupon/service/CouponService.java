@@ -113,8 +113,7 @@ public class CouponService {
         double totalDiscount = 0.0;
         log.debug("Calculating item discount for item: {} and coupon: {}", item, coupon);
 
-        if (coupon.getCouponDetail() instanceof BxGyCoupon) {
-            BxGyCoupon bxGyCoupon = (BxGyCoupon) coupon.getCouponDetail();
+        if (coupon.getCouponDetail() instanceof BxGyCoupon bxGyCoupon) {
             Map<Integer, Integer> cartProductQuantity = cart.getItems().stream()
                     .collect(Collectors.toMap(
                             Item::getProductId,
@@ -133,8 +132,7 @@ public class CouponService {
                     log.debug("BxGyCoupon: Product ID {} eligible for {} free items. Total discount: {}", item.getProductId(), eligibleForFreeProducts, totalDiscount);
                 }
             }
-        } else if (coupon.getCouponDetail() instanceof ProductWiseCoupon) {
-            ProductWiseCoupon details = (ProductWiseCoupon) coupon.getCouponDetail();
+        } else if (coupon.getCouponDetail() instanceof ProductWiseCoupon details) {
             if (item.getProductId() == details.getProductId()) {
                 totalDiscount = item.getPrice() * item.getQuantity() * (details.getDiscount() / 100);
                 log.debug("ProductWiseCoupon: Product ID {} has a discount of {} on quantity {}. Total discount: {}", item.getProductId(), details.getDiscount(), item.getQuantity(), totalDiscount);
@@ -165,7 +163,7 @@ public class CouponService {
         log.info("Deleting coupon with ID: {}", id);
         Optional<Coupon> coupon = couponRepository.findById(id);
 
-        if (!coupon.isPresent()) {
+        if (coupon.isEmpty()) {
             throw new CouponNotFoundException("Coupon with ID " + id + " not found");
         }
         couponRepository.deleteById(id);

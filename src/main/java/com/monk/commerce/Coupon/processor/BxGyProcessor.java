@@ -15,10 +15,9 @@ public class BxGyProcessor implements CouponProcessor {
 
     @Override
     public boolean isApplicable(Cart cart, Coupon coupon) {
-        if (!(coupon.getCouponDetail() instanceof BxGyCoupon)) {
+        if (!(coupon.getCouponDetail() instanceof BxGyCoupon bxGyCoupon)) {
             return false;
         }
-        BxGyCoupon bxGyCoupon = (BxGyCoupon) coupon.getCouponDetail();
 
         Map<Integer, Integer> cartProductQuantity = cart.getItems().stream()
                 .collect(Collectors.toMap(
@@ -40,11 +39,9 @@ public class BxGyProcessor implements CouponProcessor {
 
     @Override
     public double calculateDiscount(Cart cart, Coupon coupon) {
-        if (!(coupon.getCouponDetail() instanceof BxGyCoupon)) {
+        if (!(coupon.getCouponDetail() instanceof BxGyCoupon bxGyCoupon)) {
             return 0;
         }
-
-        BxGyCoupon bxGyCoupon = (BxGyCoupon) coupon.getCouponDetail();
 
         Map<Integer, Integer> cartProductQuantity = cart.getItems().stream()
                 .collect(Collectors.toMap(
@@ -53,7 +50,6 @@ public class BxGyProcessor implements CouponProcessor {
                         Integer::sum
                 ));
 
-        int repetitionCount = 0;
 
         int maxBuyApplications = bxGyCoupon.getBuyProducts().stream()
                 .mapToInt(buy -> cartProductQuantity.getOrDefault(buy.getProductId(), 0) / buy.getQuantity())
