@@ -1,16 +1,15 @@
 package com.monk.commerce.ExceptionHandler;
 
-import com.monk.commerce.cop.Exception.CouponNotApplicableException;
-import com.monk.commerce.cop.Exception.CouponNotFoundException;
-import com.monk.commerce.cop.Exception.InvalidCouponDetailsException;
-import com.monk.commerce.cop.Exception.ResourceNotFoundException;
+import com.monk.commerce.Coupon.Exception.CouponNotApplicableException;
+import com.monk.commerce.Coupon.Exception.CouponNotFoundException;
+import com.monk.commerce.Coupon.Exception.InvalidCouponDetailsException;
+import com.monk.commerce.Coupon.Exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
