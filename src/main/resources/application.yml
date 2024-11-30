@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Ecommerce
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecommerce_db
+    username: ecommerce_user
+    password: ecommerce_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        use-new-id-generator-mappings: true
+  logging:
+    level:
+      com:
+        fasterxml:
+          jackson:
+            databind: DEBUG
