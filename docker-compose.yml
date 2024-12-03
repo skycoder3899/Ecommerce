@@ -1,6 +1,19 @@
 version: '3.9'
 
 services:
+  app:
+    image: ecommerce-app:1.0
+    container_name: ecommerce_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/ecommerce_db
+      SPRING_DATASOURCE_USERNAME: ecommerce_user
+      SPRING_DATASOURCE_PASSWORD: ecommerce_password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      - db
+
   db:
     image: mysql:8.0
     container_name: mysql_db
