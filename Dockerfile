@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/Ecommerce-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the application port (default Spring Boot port is 8080)
-EXPOSE 8080
+EXPOSE 8081
 
 # Define the command to run the JAR file
 ENTRYPOINT ["java", "-jar", "app.jar"]
